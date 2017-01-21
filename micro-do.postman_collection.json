@@ -1,0 +1,33 @@
+{
+	"variables": [],
+	"info": {
+		"name": "micro-do",
+		"_postman_id": "5d517bd2-b9e8-73c0-6fa5-36be985b6829",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/v1/todo/",
+			"request": {
+				"url": "http://localhost:8080/api/v1/todo/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/user/",
+			"request": {
+				"url": "http://localhost:8080/api/v1/user/",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
