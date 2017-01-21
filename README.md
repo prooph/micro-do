@@ -96,10 +96,10 @@ also run different PHP versions with different settings and extensions installed
             - skeleton should contain composer.json with namespace set up (application ns should be picked from a root config file)
             - a `public` folder with an `index.php` echoing a "Hello todo-write"
             - a `src` folder
-        - issue command `$ docker-compose up -d php-todo-write`
-        - issue command `$ docker-compose kill -s HUP nginx` to let Nginx reload the gateway config without downtime <3
-     - `$ prooph micro:service:require|install|update todo-write <composer arguments>` proxy command for composer, it should change the working dir to `service/todo-write` and run composer with specified composer args
-     - similar commands for process managers and projections
+    - issue command `$ docker-compose up -d php-todo-write`
+    - issue command `$ docker-compose kill -s HUP nginx` to let Nginx reload the gateway config without downtime <3
+    - `$ prooph micro:service:require|install|update todo-write <composer arguments>` proxy command for composer, it should change the working dir to `service/todo-write` and run composer with specified composer args
+    - similar commands for process managers and projections
  
 - Management Dashboard
     - default service: event-store-http-api
