@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+
+  nginx:
+    image: prooph/nginx:www
+    ports:
+      - 8080:80
+      - 443:443
+      - 10081:10081
+      - 10082:10082
+    volumes:
+      - ./gateway:/etc/nginx/sites-enabled:ro
+
+  php-todo-write:
+    image: prooph/php:7.1-fpm
+    volumes:
+      - ./service/todo-write:/var/www
+
+  php-todo-read:
+    image: prooph/php:7.1-fpm
+    volumes:
+      - ./service/todo-read:/var/www
+
+  php-user-write:
+    image: prooph/php:7.1-fpm
+    volumes:
+      - ./service/user-write:/var/www
+    environment:
+      - PDO_DSN=pgsql:host=postgres port=5432 dbname=micro_do
+      - PDO_USER=postgres
+      - PDO_PWD=
+
+  php-user-read:
+    image: prooph/php:7.1-fpm
+    volumes:
+      - ./service/user-read:/var/www
+
+  postgres:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=micro_do
+    volumes:
+      - ./packages/shared/vendor/prooph/pdo-event-store/scripts/postgres:/docker-entrypoint-initdb.d

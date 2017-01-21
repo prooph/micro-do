@@ -1,0 +1,9 @@
+/.settings
+/.project
+/.buildpath
+service/*/vendor
+packages/*/vendor
+.idea
+.php_cs.cache
+nbproject
+composer.lock
