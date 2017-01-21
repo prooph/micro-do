@@ -54,7 +54,7 @@ Note: The nginx gateway routes a `POST /api/v1/user/` request to the `user-write
 
 Yes, well observed! The best friend of PHP is a solid webserver. Normally you configure your webserver to forward
 every request to your monolithic PHP application. Your favorite web framework takes over the request and routes it through the
-framework application. While this works nice for monolithic applications running on dedicated servers it is not th best approach for
+framework application. While this works nice for monolithic applications running on dedicated servers it is not the best approach for
 Microservices. Microservices should be small with very few dependencies. They should also be stateless so that you can scale each
 service individually. 
 
@@ -69,7 +69,7 @@ You know PHP's shared nothing architecture and its limitations? Yes, you know th
 You don't need to worry about threads, non blocking I/O and async programming. Also in most cases you don't run
 into memory leaks and other issues caused by long-running processes. 
 
-The problem begins however, when you have a large codebase with hundreds of thounds of classes spread accross your
+The problem begins however, when you have a large codebase with hundreds of thousands of classes spread accross your
 monolithic application but you don't want to load all classes on every request. The obvious solotion is using an autoloader.
 Next step is to use a dependency injection container which knows all your different parts of the application and
 initializes controllers, services, model classes and many more on demand so that every request only causes the
@@ -104,7 +104,7 @@ also run different PHP versions with different settings and extensions installed
 - Management Dashboard
     - default service: event-store-http-api
     - default service: event-store-ui
-    - default service: pojections monitoring
+    - default service: projections monitoring
     - default service: process manager monitoring
     
 - Docker Swarm and Kubernetes showcase
