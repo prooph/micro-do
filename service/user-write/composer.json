@@ -28,7 +28,8 @@
     "prooph/pdo-event-store": "1.0.x-dev",
     "prooph/micro": "dev-master",
     "zendframework/zend-validator": "^2.8",
-    "zendframework/zend-diactoros": "^1.3"
+    "zendframework/zend-diactoros": "^1.3",
+    "prooph/snapshot-store": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7",
