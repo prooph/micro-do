@@ -17,7 +17,7 @@ own **prooph Microservices**.
 For now you have to follow a few steps to get the services up. 
 First you need [Docker](https://www.docker.com/). The rest will be installed by pulling docker images and run a few commands.
 
-Please Note: Some commands look very complex at the moment. We will reduse complexitity as soon as possible.
+Please Note: Some commands look very complex at the moment. We will reduce complexitity as soon as possible.
 
 ### Shared package
 
@@ -70,7 +70,7 @@ You don't need to worry about threads, non blocking I/O and async programming. A
 into memory leaks and other issues caused by long-running processes. 
 
 The problem begins however, when you have a large codebase with hundreds of thousands of classes spread accross your
-monolithic application but you don't want to load all classes on every request. The obvious solotion is using an autoloader.
+monolithic application but you don't want to load all classes on every request. The obvious solution is using an autoloader.
 Next step is to use a dependency injection container which knows all your different parts of the application and
 initializes controllers, services, model classes and many more on demand so that every request only causes the
 initialization of the objects that are really needed to handle the request.
