@@ -29,7 +29,8 @@ $commandMap = [
 ];
 
 return \Prooph\Micro\Kernel\buildCommandDispatcher(
-    $factories['eventStore'],
     $commandMap,
-    $factories['producer']
+    $factories['eventStore'],
+    $factories['producer'],
+    $factories['snapshotStore']
 );

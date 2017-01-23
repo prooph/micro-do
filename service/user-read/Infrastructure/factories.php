@@ -8,4 +8,8 @@
  * file that was distributed with this source code.
  */
 
-echo "Hello World User read Got user id: " . $_SERVER['USER_ID'];
+declare(strict_types = 1);
+
+$factories = [];
+
+return $factories;

@@ -29,7 +29,9 @@
     "prooph/micro": "dev-master",
     "zendframework/zend-validator": "^2.8",
     "zendframework/zend-diactoros": "^1.3",
-    "prooph/snapshot-store": "dev-master"
+    "prooph/snapshot-store": "dev-master",
+    "prooph/mongodb-snapshot-store": "dev-master",
+    "mongodb/mongodb": "^1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7",

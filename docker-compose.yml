@@ -30,11 +30,26 @@ services:
       - PDO_DSN=pgsql:host=postgres port=5432 dbname=micro_do
       - PDO_USER=postgres
       - PDO_PWD=
+      - MONGO_SERVER=mongodb://mongodb:27017
+      - MONGO_DB_NAME=micro_do
 
   php-user-read:
     image: prooph/php:7.1-fpm
     volumes:
       - ./service/user-read:/var/www
+
+  php-user-snapshotter:
+    image: prooph/php:7.1-cli
+    volumes:
+      - ./service/user-write:/app
+    environment:
+      - PDO_DSN=pgsql:host=postgres port=5432 dbname=micro_do
+      - PDO_USER=postgres
+      - PDO_PWD=
+      - MONGO_SERVER=mongodb://mongodb:27017
+      - MONGO_DB_NAME=micro_do
+    command: php /app/bin/user_snapshotter.php
+    restart: always
 
   postgres:
     image: postgres:alpine
@@ -43,4 +58,9 @@ services:
     environment:
       - POSTGRES_DB=micro_do
     volumes:
-      - ./packages/shared/vendor/prooph/pdo-event-store/scripts/postgres:/docker-entrypoint-initdb.d
+      - ./env/postgres/initdb.d:/docker-entrypoint-initdb.d
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017

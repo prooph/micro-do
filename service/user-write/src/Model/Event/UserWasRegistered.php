@@ -37,12 +37,12 @@ final class UserWasRegistered extends DomainEvent implements PayloadConstructabl
      */
     private $emailAddress;
 
-    public static function withData(UserId $userId, string $name, EmailAddress $emailAddress): UserWasRegistered
+    public static function withData(UserId $userId, string $name, EmailAddress $emailAddress, int $version): UserWasRegistered
     {
         $event = new self([
             'user_id' => $userId->toString(),
             'name' => $name,
-            'email' => $emailAddress->toString(),
+            'email' => $emailAddress->toString()
         ]);
 
         $event->userId = $userId;

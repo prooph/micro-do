@@ -22,9 +22,9 @@ function registerWithData(array $state, RegisterUser $command): AggregateResult 
 
     assertName($command->name());
 
-    $event = UserWasRegistered::withData($command->userId(), $command->name(), $command->emailAddress());
+    $event = UserWasRegistered::withData($command->userId(), $command->name(), $command->emailAddress(), 1);
 
-    return new AggregateResult([$event], apply($state, $event));
+    return new AggregateResult(apply($state, $event), $event);
 }
 
 function assertName(string $name)
@@ -39,9 +39,13 @@ function apply(array $state, Message ...$events): array
     foreach ($events as $event) {
         switch ($event->messageName()) {
             case UserWasRegistered::class:
-                return array_merge($state, $event->payload());
+                $state = array_merge($state, $event->payload());
+                break;
         }
     }
+
+    $version = $state['version'] ?? 0;
+    $state['version'] = $version + count($events);
 
     return $state;
 }

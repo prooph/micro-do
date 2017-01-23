@@ -31,4 +31,9 @@ final class UserAggregateDefinition extends AbstractAggregateDefiniton
     {
         return \Prooph\MicroDo\UserWrite\Model\User\apply($state, ...$events);
     }
+
+    public function aggregateType(): string
+    {
+        return 'user';
+    }
 }

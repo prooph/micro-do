@@ -8,4 +8,13 @@
  * file that was distributed with this source code.
  */
 
-echo "Hello World User read Got user id: " . $_SERVER['USER_ID'];
+declare(strict_types = 1);
+
+final class DatabaseDefinition
+{
+    const USERS_V1_READ_MODEL_TABLE = 'users_v1';
+
+    private function __construct()
+    {
+    }
+}
