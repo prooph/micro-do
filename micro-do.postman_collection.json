@@ -8,10 +8,10 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/api/v1/todo/",
+			"name": "Todo GET / POST test",
 			"request": {
 				"url": "http://localhost:8080/api/v1/todo/",
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {},
 				"description": ""
@@ -19,12 +19,41 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/user/",
+			"name": "Register a user",
 			"request": {
-				"url": "http://localhost:8080/api/v1/user/",
+				"url": "http://localhost:8080/api/v1/user",
 				"method": "POST",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"message_name\": \"UserService.RegisterUser\",\n\t\"payload\": {\n\t\t\"user_id\": \"2e237e43-1285-4f7e-a03f-ec5cf3455905\",\n\t\t\"name\": \"codeliner\",\n\t\t\"email\": \"a.member@prooph.de\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get a user",
+			"request": {
+				"url": "http://localhost:8080/api/v1/user/2e237e43-1285-4f7e-a03f-ec5cf3455905",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"message_name\": \"UserService.RegisterUser\",\n\t\"payload\": {\n\t\t\"user_id\": \"2e237e43-1285-4f7e-a03f-ec5cf3455905\",\n\t\t\"name\": \"Alex\",\n\t\t\"email\": \"a.member@prooph.de\"\n\t}\n}"
+				},
 				"description": ""
 			},
 			"response": []

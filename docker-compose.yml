@@ -11,6 +11,11 @@ services:
       - 10082:10082
     volumes:
       - ./gateway:/etc/nginx/sites-enabled:ro
+    depends_on:
+      - php-todo-write
+      - php-todo-read
+      - php-user-write
+      - php-user-read
 
   php-todo-write:
     image: prooph/php:7.1-fpm
@@ -32,6 +37,9 @@ services:
       - PDO_PWD=
       - MONGO_SERVER=mongodb://mongodb:27017
       - MONGO_DB_NAME=micro_do
+    depends_on:
+      - postgres
+      - mongodb
 
   php-user-read:
     image: prooph/php:7.1-fpm
@@ -50,6 +58,9 @@ services:
       - MONGO_DB_NAME=micro_do
     command: php /app/bin/user_snapshotter.php
     restart: always
+    depends_on:
+      - postgres
+      - mongodb
 
   postgres:
     image: postgres:alpine
