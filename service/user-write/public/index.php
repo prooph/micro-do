@@ -17,13 +17,14 @@ $app = function(\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Mes
     try {
         $message = \Prooph\MicroDo\Shared\Fn\createMessageFromRequest($request, $messageMap);
 
+        /** @var \Prooph\Micro\AggregateResult $result */
         $result = $dispatcher($message);
 
         if($result instanceof \Throwable) {
             throw $result;
         }
 
-        return new \Zend\Diactoros\Response\JsonResponse($result);
+        return new \Zend\Diactoros\Response\JsonResponse($result->state());
     } catch (\Throwable $e) {
         error_log('[UserWriteService.Error] ' . $e);
 

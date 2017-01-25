@@ -50,8 +50,4 @@ $factories['snapshotStore'] = function () use ($factories): \Prooph\SnapshotStor
     return new \Prooph\MongoDb\SnapshotStore\MongoDbSnapshotStore($mongoConnection->client(), $mongoConnection->dbName());
 };
 
-$factories['producer'] = function (): callable {
-    return function (\Prooph\Common\Messaging\Message $message): void {};
-};
-
 return $factories;

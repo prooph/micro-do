@@ -48,6 +48,8 @@
       "src/Model/User.php"
     ]
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "config": {
     "preferred-install": {
       "prooph/*": "source"
