@@ -21,8 +21,8 @@ $factories = include 'factories.php';
 
 $commandMap = [
     RegisterUser::class => [
-        'handler' => function (array $state, Message $message): AggregateResult {
-            return \Prooph\MicroDo\UserWrite\Model\User\registerWithData($state, $message);
+        'handler' => function (callable $stateResolver, Message $message): array {
+            return \Prooph\MicroDo\UserWrite\Model\User\registerWithData($stateResolver, $message);
         },
         'definition' => UserAggregateDefinition::class,
     ]
