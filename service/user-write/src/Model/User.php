@@ -13,18 +13,15 @@ declare(strict_types=1);
 namespace Prooph\MicroDo\UserWrite\Model\User;
 
 use Prooph\Common\Messaging\Message;
-use Prooph\Micro\AggregateResult;
 use Prooph\MicroDo\UserWrite\Model\Command\RegisterUser;
 use Prooph\MicroDo\UserWrite\Model\Event\UserWasRegistered;
 use Prooph\MicroDo\UserWrite\Model\Exception\InvalidName;
 
-function registerWithData(array $state, RegisterUser $command): AggregateResult {
+function registerWithData(callable $stateResolver, RegisterUser $command): array {
 
     assertName($command->name());
 
-    $event = UserWasRegistered::withData($command->userId(), $command->name(), $command->emailAddress(), 1);
-
-    return new AggregateResult(apply($state, $event), $event);
+    return [UserWasRegistered::withData($command->userId(), $command->name(), $command->emailAddress(), 1)];
 }
 
 function assertName(string $name)
@@ -32,6 +29,11 @@ function assertName(string $name)
     if(empty($name)) {
         throw InvalidName::reason('Name must not be empty');
     }
+}
+
+function nextVersion(array $state): int {
+    $version = $state['version'] ?? 0;
+    return ++$version;
 }
 
 function apply(array $state, Message ...$events): array
@@ -43,9 +45,6 @@ function apply(array $state, Message ...$events): array
                 break;
         }
     }
-
-    $version = $state['version'] ?? 0;
-    $state['version'] = $version + count($events);
 
     return $state;
 }

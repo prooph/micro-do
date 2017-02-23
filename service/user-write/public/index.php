@@ -17,14 +17,19 @@ $app = function(\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Mes
     try {
         $message = \Prooph\MicroDo\Shared\Fn\createMessageFromRequest($request, $messageMap);
 
-        /** @var \Prooph\Micro\AggregateResult $result */
         $result = $dispatcher($message);
 
         if($result instanceof \Throwable) {
             throw $result;
         }
 
-        return new \Zend\Diactoros\Response\JsonResponse($result->state());
+        $noOpMessageConverter = new \Prooph\Common\Messaging\NoOpMessageConverter();
+
+        return new \Zend\Diactoros\Response\JsonResponse([
+            'events' => array_map(function(\Prooph\Common\Messaging\Message $message) use($noOpMessageConverter) {
+                return $noOpMessageConverter->convertToArray($message);
+            }, $result)
+        ]);
     } catch (\Throwable $e) {
         error_log('[UserWriteService.Error] ' . $e);
 

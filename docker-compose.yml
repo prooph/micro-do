@@ -50,7 +50,6 @@ services:
       - MONGO_SERVER=mongodb://mongodb:27017
       - MONGO_DB_NAME=micro_do
     command: php /app/bin/user_snapshotter.php
-    restart: always
 
   postgres:
     image: postgres:alpine

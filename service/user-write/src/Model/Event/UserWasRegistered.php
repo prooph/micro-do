@@ -42,7 +42,8 @@ final class UserWasRegistered extends DomainEvent implements PayloadConstructabl
         $event = new self([
             'user_id' => $userId->toString(),
             'name' => $name,
-            'email' => $emailAddress->toString()
+            'email' => $emailAddress->toString(),
+            'version' => $version
         ]);
 
         $event->userId = $userId;
