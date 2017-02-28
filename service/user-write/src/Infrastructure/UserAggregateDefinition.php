@@ -23,7 +23,7 @@ final class UserAggregateDefinition extends AbstractAggregateDefiniton
         return 'user_id';
     }
 
-    public function streamName(string $aggregateId): StreamName
+    public function streamName(): StreamName
     {
         return new StreamName('user_stream');
     }

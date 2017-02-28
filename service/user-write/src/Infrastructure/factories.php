@@ -36,7 +36,6 @@ $factories['eventStore'] = function () use ($factories): \Prooph\EventStore\Even
     if (null === $eventStore) {
         $eventStore = new \Prooph\EventStore\Pdo\PostgresEventStore(
             new \Prooph\Common\Messaging\FQCNMessageFactory(),
-            new \Prooph\Common\Messaging\NoOpMessageConverter(),
             $factories['pdoConnection'](),
             new \Prooph\EventStore\Pdo\PersistenceStrategy\PostgresSimpleStreamStrategy()
         );
