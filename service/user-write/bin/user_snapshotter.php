@@ -13,31 +13,38 @@ declare(strict_types=1);
 namespace Prooph\MicroDo\UserWrite\Script;
 
 use Prooph\Common\Messaging\Message;
-use Prooph\EventStore\EventStore;
-use Prooph\Micro\SnapshotReadModel;
 use Prooph\MicroDo\UserWrite\Infrastructure\UserAggregateDefinition;
+use Prooph\EventStore\EventStore;
+use Prooph\EventStore\Pdo\Projection\PostgresProjectionManager;
+use Prooph\Micro\SnapshotReadModel;
+use Prooph\MongoDb\SnapshotStore\MongoDbSnapshotStore;
 
 $autoloader = require __DIR__ . '/../vendor/autoload.php';
 
 $factories = include __DIR__ . '/../src/Infrastructure/factories.php';
 
 $eventStore = $factories['eventStore']();
-/* @var EventStore $eventStore */
-
+$pdoConnection = $factories['pdoConnection']();
 $aggregateDefinition = new UserAggregateDefinition();
+$mongoClient = $factories['mongoConnection']()->client();
+
+/* @var EventStore $eventStore */
 
 $readModel = new SnapshotReadModel(
     $factories['snapshotStore'](),
     new UserAggregateDefinition()
 );
 
-$projection = $eventStore->createReadModelProjection(
-    'user_snapshots',
-    $readModel
+$projectionManager = new PostgresProjectionManager($eventStore, $pdoConnection);
+
+$snapshotReadModel = new SnapshotReadModel(
+    new MongoDbSnapshotStore($mongoClient, 'user_snapshots'),
+    $aggregateDefinition
 );
 
-$projection
-    ->fromStream($aggregateDefinition->streamName('')->toString())
+$projection = $projectionManager->createReadModelProjection('user_snapshots', $snapshotReadModel);
+
+$projection->fromStream($aggregateDefinition->streamName()->toString())
     ->whenAny(function ($state, Message $event): void {
         $this->readModel()->stack('replay', $event);
     })
