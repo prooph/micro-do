@@ -23,7 +23,7 @@
   "require": {
     "php": "^7.1",
     "psr/http-message": "^1.0",
-    "prooph/common": "4.0.x-dev",
+    "prooph/common": "^4.0",
     "mongodb/mongodb": "^1.0"
   },
   "require-dev": {
