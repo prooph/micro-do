@@ -23,9 +23,7 @@
     "php": "^7.1",
     "prooph-micro-do/shared": "^1.0",
     "roave/security-advisories": "dev-master",
-    "prooph/common": "4.0.x-dev",
-    "prooph/event-store": "7.0.x-dev",
-    "prooph/pdo-event-store": "1.0.x-dev",
+    "prooph/pdo-event-store": "^1.4.1"
     "prooph/micro": "dev-master",
     "zendframework/zend-validator": "^2.8",
     "zendframework/zend-diactoros": "^1.3",
@@ -34,8 +32,8 @@
     "mongodb/mongodb": "^1.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.7",
-    "phpspec/prophecy": "dev-patch-1 as 1.6.2",
+    "phpunit/phpunit": "^6.0",
+    "phpspec/prophecy": "^1.7",
     "prooph/php-cs-fixer-config": "^0.1.1",
     "satooshi/php-coveralls": "^1.0",
     "malukenho/docheader": "^0.1.4"
@@ -67,10 +65,6 @@
       "options": {
         "symlink": false
       }
-    },
-    {
-      "type": "git",
-      "url": "https://github.com/prolic/prophecy.git"
     }
   ]
 }
