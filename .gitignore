@@ -4,6 +4,6 @@
 service/*/vendor
 packages/*/vendor
 .idea
-.php_cs.cache
+.php_cs*.cache
 nbproject
 composer.lock
