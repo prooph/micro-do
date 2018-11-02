@@ -1,0 +1,44 @@
+{
+  "name": "prooph/php-cs-fixer-config",
+  "description": "PHP CS Fixer config for prooph components",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander Miertsch",
+      "email": "contact@prooph.de",
+      "homepage": "http://www.codeliner.ws/"
+    },
+    {
+      "name": "Sascha-Oliver Prolic",
+      "email": "saschaprolic@googlemail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "friendsofphp/php-cs-fixer": "^2.8.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0",
+    "satooshi/php-coveralls": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Prooph\\CS\\Config\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ProophTest\\CS\\Config\\": "test"
+    }
+  },
+  "scripts": {
+    "check": [
+      "@cs",
+      "@test"
+    ],
+    "cs": "php-cs-fixer fix -v --diff --dry-run",
+    "cs-fix": "php-cs-fixer fix -v --diff",
+    "test": "phpunit"
+  }
+}
