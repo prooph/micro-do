@@ -1,8 +1,9 @@
 <?php
+
 /**
- * This file is part of the prooph/micro-do.
- * (c) 2016-2017 prooph software GmbH <contact@prooph.de>
- * (c) 2016-2017 Sascha-Oliver Prolic <saschaprolic@googlemail.com>
+ * This file is part of prooph/micro-do.
+ * (c) 2016-2018 prooph software GmbH <contact@prooph.de>
+ * (c) 2016-2018 Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -34,7 +35,6 @@ final class UserCollectionReadModel implements \Prooph\EventStore\Projection\Rea
         $this->connection = $connection;
     }
 
-
     public function init(): void
     {
         throw new \BadMethodCallException('Initializing a user collection read model is not supported');
@@ -54,7 +54,6 @@ TRUNCATE TABLE {$this->usersTable}
 EOT;
         $statement = $this->connection->prepare($query);
         $statement->execute();
-
     }
 
     public function delete(): void
@@ -66,7 +65,7 @@ EOT;
     {
         $this->operations[] = [
             $operation,
-            $args
+            $args,
         ];
     }
 
@@ -77,7 +76,7 @@ EOT;
         foreach ($this->operations as list($operation, $args)) {
             switch ($operation) {
                 case self::OP_INSERT_USER:
-                    echo "todo";
+                    echo 'todo';
                     break;
             }
         }

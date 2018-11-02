@@ -1,8 +1,9 @@
 <?php
+
 /**
- * This file is part of the prooph/micro-do.
- * (c) 2016-2017 prooph software GmbH <contact@prooph.de>
- * (c) 2016-2017 Sascha-Oliver Prolic <saschaprolic@googlemail.com>
+ * This file is part of prooph/micro-do.
+ * (c) 2016-2018 prooph software GmbH <contact@prooph.de>
+ * (c) 2016-2018 Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,19 +16,21 @@ $factories = [];
 $factories['pdoConnection'] = function (): PDO {
     static $connection;
 
-    if(!$connection) {
-        $connection = new PDO(getenv('PDO_DSN'), getenv('PDO_USER'), getenv('PDO_PWD'));
+    if (! $connection) {
+        $connection = new PDO(\getenv('PDO_DSN'), \getenv('PDO_USER'), \getenv('PDO_PWD'));
     }
+
     return $connection;
 };
 
 $factories['mongoConnection'] = function (): \Prooph\MicroDo\Shared\MongoDb\MongoConnection {
     static $mongoConnection;
 
-    if(!$mongoConnection) {
-        $client = new \MongoDB\Client(getenv('MONGO_SERVER'));
-        $mongoConnection = new \Prooph\MicroDo\Shared\MongoDb\MongoConnection($client, getenv('MONGO_DB_NAME'));
+    if (! $mongoConnection) {
+        $client = new \MongoDB\Client(\getenv('MONGO_SERVER'));
+        $mongoConnection = new \Prooph\MicroDo\Shared\MongoDb\MongoConnection($client, \getenv('MONGO_DB_NAME'));
     }
+
     return $mongoConnection;
 };
 
@@ -41,6 +44,7 @@ $factories['eventStore'] = function () use ($factories): \Prooph\EventStore\Even
             new \Prooph\EventStore\Pdo\PersistenceStrategy\PostgresSimpleStreamStrategy()
         );
     }
+
     return $eventStore;
 };
 
