@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "prooph/php-cs-fixer-config": "^0.3"
+    }
+}
