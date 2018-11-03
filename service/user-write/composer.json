@@ -21,6 +21,7 @@
   ],
   "require": {
     "php": "^7.1",
+    "prooph-micro-do/shared": "^1.0",
     "roave/security-advisories": "dev-master",
     "prooph/pdo-event-store": "^1.4",
     "prooph/micro": "dev-master",
