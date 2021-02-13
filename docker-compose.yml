@@ -14,39 +14,43 @@ services:
       - ./gateway/config:/etc/nginx/config:ro
 
   php-todo-write:
-    image: prooph/php:7.1-fpm
+    image: prooph/php:7.4-fpm
     volumes:
       - ./service/todo-write:/var/www
 
   php-todo-read:
-    image: prooph/php:7.1-fpm
+    image: prooph/php:7.4-fpm
     volumes:
       - ./service/todo-read:/var/www
 
   php-user-write:
-    image: prooph/php:7.1-fpm
+    image: prooph/php:7.4-fpm
+    depends_on:
+      - postgres
     volumes:
       - ./service/user-write:/var/www
     environment:
       - PDO_DSN=pgsql:host=postgres port=5432 dbname=micro_do
       - PDO_USER=postgres
-      - PDO_PWD=
+      - PDO_PWD=postgres
       - MONGO_SERVER=mongodb://mongodb:27017
       - MONGO_DB_NAME=micro_do
 
   php-user-read:
-    image: prooph/php:7.1-fpm
+    image: prooph/php:7.4-fpm
     volumes:
       - ./service/user-read:/var/www
 
   php-user-snapshotter:
-    image: prooph/php:7.1-cli
+    image: prooph/php:7.4-cli
+    depends_on:
+      - postgres
     volumes:
       - ./service/user-write:/app
     environment:
       - PDO_DSN=pgsql:host=postgres port=5432 dbname=micro_do
       - PDO_USER=postgres
-      - PDO_PWD=
+      - PDO_PWD=postgres
       - MONGO_SERVER=mongodb://mongodb:27017
       - MONGO_DB_NAME=micro_do
     command: php /app/bin/user_snapshotter.php
@@ -57,6 +61,8 @@ services:
       - 5432:5432
     environment:
       - POSTGRES_DB=micro_do
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - ./env/postgres/initdb.d:/docker-entrypoint-initdb.d:ro
 

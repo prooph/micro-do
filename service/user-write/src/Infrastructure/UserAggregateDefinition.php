@@ -15,21 +15,21 @@ namespace Prooph\MicroDo\UserWrite\Infrastructure;
 
 use Prooph\Common\Messaging\Message;
 use Prooph\EventStore\StreamName;
-use Prooph\Micro\AbstractAggregateDefiniton;
+use Prooph\Micro\AbstractAggregateDefinition;
 
-final class UserAggregateDefinition extends AbstractAggregateDefiniton
+final class UserAggregateDefinition extends AbstractAggregateDefinition
 {
     public function identifierName(): string
     {
         return 'user_id';
     }
 
-    public function streamName(string $aggregateId): StreamName
+    public function streamName(): StreamName
     {
         return new StreamName('user_stream');
     }
 
-    public function apply(array $state, Message ...$events): array
+    public function apply($state, Message ...$events): array
     {
         return \Prooph\MicroDo\UserWrite\Model\User\apply($state, ...$events);
     }

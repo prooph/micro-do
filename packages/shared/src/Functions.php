@@ -18,7 +18,7 @@ declare(strict_types=1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Prooph\MicroDo\Shared\Fn;
+namespace Prooph\MicroDo\Shared\Functions;
 
 use Prooph\Common\Messaging\FQCNMessageFactory;
 use Prooph\Common\Messaging\Message;

@@ -25,7 +25,7 @@ $dispatcher = include '../src/Infrastructure/dispatcher.php';
 
 $app = function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) use ($messageMap, $dispatcher) {
     try {
-        $message = \Prooph\MicroDo\Shared\Fn\createMessageFromRequest($request, $messageMap);
+        $message = \Prooph\MicroDo\Shared\Functions\createMessageFromRequest($request, $messageMap);
 
         $result = $dispatcher($message);
 
@@ -38,7 +38,7 @@ $app = function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Me
         return new \Zend\Diactoros\Response\JsonResponse([
             'events' => \array_map(function (\Prooph\Common\Messaging\Message $message) use ($noOpMessageConverter) {
                 return $noOpMessageConverter->convertToArray($message);
-            }, $result),
+            }, $result->getOrElse('nothing')->toArray()),
         ]);
     } catch (\Throwable $e) {
         \error_log('[UserWriteService.Error] ' . $e);
