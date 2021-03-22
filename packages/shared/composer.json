@@ -37,7 +37,7 @@
       "Prooph\\MicroDo\\Shared\\": "src/"
     },
     "files": [
-      "src/Fn.php"
+      "src/Functions.php"
     ]
   },
   "config": {

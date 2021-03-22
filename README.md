@@ -23,7 +23,7 @@ Please Note: Some commands look very complex at the moment. We will reduce compl
 
 ```
 $ cd packages/shared
-$ docker run --rm -it --volume $(dirname $SSH_AUTH_SOCK):$(dirname $SSH_AUTH_SOCK) -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK --volume $(pwd):/app prooph/composer:7.1 install
+$ docker run --rm -it --volume $(dirname $SSH_AUTH_SOCK):$(dirname $SSH_AUTH_SOCK) -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK --volume $(pwd):/app prooph/composer:7.4 install
 $ cd ../..
 ```
 
@@ -31,7 +31,7 @@ $ cd ../..
 
 ```
 $ cd service/user-write
-$ docker run --rm -it --volume $(dirname $SSH_AUTH_SOCK):$(dirname $SSH_AUTH_SOCK) -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK --volume $(pwd):/app --volume $(pwd)/../../packages:/packages prooph/composer:7.1 install
+$ docker run --rm -it --volume $(dirname $SSH_AUTH_SOCK):$(dirname $SSH_AUTH_SOCK) -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK --volume $(pwd):/app --volume $(pwd)/../../packages:/packages prooph/composer:7.4 install
 $ cd ../..
 ```
 

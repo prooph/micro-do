@@ -39,9 +39,8 @@ $factories['eventStore'] = function () use ($factories): \Prooph\EventStore\Even
     if (null === $eventStore) {
         $eventStore = new \Prooph\EventStore\Pdo\PostgresEventStore(
             new \Prooph\Common\Messaging\FQCNMessageFactory(),
-            new \Prooph\Common\Messaging\NoOpMessageConverter(),
             $factories['pdoConnection'](),
-            new \Prooph\EventStore\Pdo\PersistenceStrategy\PostgresSimpleStreamStrategy()
+            new \Prooph\EventStore\Pdo\PersistenceStrategy\PostgresSimpleStreamStrategy(),
         );
     }
 
@@ -51,7 +50,7 @@ $factories['eventStore'] = function () use ($factories): \Prooph\EventStore\Even
 $factories['snapshotStore'] = function () use ($factories): \Prooph\SnapshotStore\SnapshotStore {
     $mongoConnection = $factories['mongoConnection']();
     /** @var \Prooph\MicroDo\Shared\MongoDb\MongoConnection $mongoConnection */
-    return new \Prooph\MongoDb\SnapshotStore\MongoDbSnapshotStore($mongoConnection->client(), $mongoConnection->dbName());
+    return new \Prooph\SnapshotStore\MongoDb\MongoDbSnapshotStore($mongoConnection->client(), $mongoConnection->dbName());
 };
 
 return $factories;

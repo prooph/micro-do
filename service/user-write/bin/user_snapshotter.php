@@ -18,7 +18,8 @@ use Prooph\EventStore\EventStore;
 use Prooph\EventStore\Pdo\Projection\PostgresProjectionManager;
 use Prooph\Micro\SnapshotReadModel;
 use Prooph\MicroDo\UserWrite\Infrastructure\UserAggregateDefinition;
-use Prooph\MongoDb\SnapshotStore\MongoDbSnapshotStore;
+use Prooph\SnapshotStore\MongoDb\MongoDbSnapshotStore;
+
 
 $autoloader = require __DIR__ . '/../vendor/autoload.php';
 
